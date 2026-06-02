@@ -1,0 +1,377 @@
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ MBTI 월드 ✨</title>
+
+<style>
+body{
+    font-family: sans-serif;
+    background: linear-gradient(135deg,#ffe8f5,#e8f4ff);
+    margin:0;
+    color:#333;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin:20px 0;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+h1,h2{
+    text-align:center;
+}
+
+.question{
+    margin:20px 0;
+    padding:15px;
+    border-radius:15px;
+    background:#f8f9ff;
+}
+
+button{
+    background:#7b6cff;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:10px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.result{
+    text-align:center;
+    padding:30px;
+}
+
+.emoji{
+    font-size:80px;
+}
+
+.traits{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+
+.box{
+    background:#f6f6ff;
+    padding:15px;
+    border-radius:15px;
+}
+
+label{
+    display:block;
+    margin:8px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>🌟 MBTI 성격 테스트 🌟</h1>
+        <p style="text-align:center;">
+            간단한 32개의 질문으로 나의 성격 유형을 확인해보세요!
+        </p>
+    </div>
+
+    <form id="mbtiForm"></form>
+
+    <div style="text-align:center;">
+        <button onclick="calculateMBTI()">결과 보기 🎉</button>
+    </div>
+
+    <div id="result" class="card result" style="display:none;"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+["사람들과 함께 있으면 에너지가 생긴다.", "E"],
+["혼자만의 시간이 꼭 필요하다.", "I"],
+["처음 보는 사람과도 쉽게 대화한다.", "E"],
+["깊은 인간관계를 선호한다.", "I"],
+
+["현실적인 이야기가 좋다.", "S"],
+["상상하고 아이디어 떠올리는 걸 좋아한다.", "N"],
+["세부사항을 잘 기억한다.", "S"],
+["미래 가능성을 생각하는 걸 좋아한다.", "N"],
+
+["결정을 할 때 논리를 중요하게 생각한다.", "T"],
+["사람 감정을 우선 고려한다.", "F"],
+["비판적 분석을 잘하는 편이다.", "T"],
+["공감 능력이 좋다는 말을 듣는다.", "F"],
+
+["계획적으로 움직이는 걸 좋아한다.", "J"],
+["즉흥적인 상황도 즐긴다.", "P"],
+["할 일을 미리 끝내야 마음이 편하다.", "J"],
+["마감 직전에 몰입하는 스타일이다.", "P"],
+
+["모임에서 중심 역할을 자주 맡는다.", "E"],
+["조용한 공간이 더 편하다.", "I"],
+["직접 경험하는 걸 선호한다.", "S"],
+["새로운 아이디어 탐구가 즐겁다.", "N"],
+
+["사실 기반 판단을 신뢰한다.", "T"],
+["따뜻한 분위기를 중요하게 여긴다.", "F"],
+["일정을 정리해두는 걸 좋아한다.", "J"],
+["변화에 유연하게 적응한다.", "P"],
+
+["활동적인 여행을 좋아한다.", "E"],
+["혼자 취미 생활하는 걸 좋아한다.", "I"],
+["현실적이고 실용적인 편이다.", "S"],
+["창의적인 상상을 자주 한다.", "N"],
+["효율성이 가장 중요하다.", "T"],
+["사람 관계가 가장 중요하다.", "F"],
+["규칙적인 생활을 선호한다.", "J"],
+["자유로운 분위기를 좋아한다.", "P"]
+
+];
+
+const results = {
+
+"INTJ": {
+emoji:"🦉",
+title:"전략가",
+good:["계획 능력이 뛰어남","독립적임","분석적 사고"],
+bad:["완벽주의","차가워 보일 수 있음","융통성 부족"]
+},
+
+"INTP": {
+emoji:"🔬",
+title:"사색가",
+good:["창의적","논리적","호기심 많음"],
+bad:["우유부단","사회성 부족","실행력 부족"]
+},
+
+"ENTJ": {
+emoji:"🦁",
+title:"지휘관",
+good:["리더십 강함","목표 지향적","결단력"],
+bad:["직설적","지배적으로 보일 수 있음","조급함"]
+},
+
+"ENTP": {
+emoji:"🦊",
+title:"토론가",
+good:["아이디어 풍부","재치 있음","도전적"],
+bad:["집중력 부족","논쟁 좋아함","루틴 싫어함"]
+},
+
+"INFJ": {
+emoji:"🌙",
+title:"옹호자",
+good:["통찰력","공감 능력","이상주의"],
+bad:["예민함","혼자 끙끙 앓음","완벽 추구"]
+},
+
+"INFP": {
+emoji:"🌸",
+title:"중재자",
+good:["따뜻함","창의성","배려심"],
+bad:["현실 회피","감정 기복","결정 어려움"]
+},
+
+"ENFJ": {
+emoji:"☀️",
+title:"선도자",
+good:["사교성","배려심","동기부여 능력"],
+bad:["남 눈치 봄","과한 책임감","감정 소모"]
+},
+
+"ENFP": {
+emoji:"🎈",
+title:"활동가",
+good:["열정적","창의적","긍정적"],
+bad:["산만함","감정 기복","끈기 부족"]
+},
+
+"ISTJ": {
+emoji:"📚",
+title:"관리자",
+good:["성실함","책임감","체계적"],
+bad:["융통성 부족","보수적","고집"]
+},
+
+"ISFJ": {
+emoji:"🧸",
+title:"수호자",
+good:["친절함","헌신적","배려심"],
+bad:["자기희생","거절 어려움","스트레스 축적"]
+},
+
+"ESTJ": {
+emoji:"🏛️",
+title:"경영자",
+good:["실행력","조직력","현실적"],
+bad:["고집","엄격함","감정 표현 부족"]
+},
+
+"ESFJ": {
+emoji:"🎀",
+title:"친선도모자",
+good:["사교적","친절함","협동적"],
+bad:["비판에 약함","눈치 많이 봄","걱정 많음"]
+},
+
+"ISTP": {
+emoji:"🛠️",
+title:"장인",
+good:["문제 해결 능력","침착함","실용적"],
+bad:["감정 표현 부족","즉흥적","거리감"]
+},
+
+"ISFP": {
+emoji:"🎨",
+title:"예술가",
+good:["감성적","온화함","창의적"],
+bad:["우유부단","계획 부족","스트레스 취약"]
+},
+
+"ESTP": {
+emoji:"🏍️",
+title:"사업가",
+good:["행동력","적응력","에너지 넘침"],
+bad:["충동적","위험 감수","참을성 부족"]
+},
+
+"ESFP": {
+emoji:"🎤",
+title:"연예인",
+good:["유쾌함","사교성","분위기 메이커"],
+bad:["충동 소비","집중력 부족","감정적"]
+}
+
+};
+
+const form = document.getElementById("mbtiForm");
+
+questions.forEach((q,index)=>{
+
+    form.innerHTML += `
+    <div class="card question">
+
+        <h3>Q${index+1}. ${q[0]}</h3>
+
+        <label>
+            <input type="radio" name="q${index}" value="${q[1]}" required>
+            그렇다 👍
+        </label>
+
+        <label>
+            <input type="radio" name="q${index}" value="">
+            아니다 👎
+        </label>
+
+    </div>
+    `;
+});
+
+function calculateMBTI(){
+
+    let scores = {
+        E:0, I:0,
+        S:0, N:0,
+        T:0, F:0,
+        J:0, P:0
+    };
+
+    questions.forEach((q,index)=>{
+
+        const selected =
+        document.querySelector(`input[name=q${index}]:checked`);
+
+        if(selected && selected.value){
+
+            scores[selected.value]++;
+
+        } else {
+
+            const opposite = {
+                E:"I",
+                I:"E",
+                S:"N",
+                N:"S",
+                T:"F",
+                F:"T",
+                J:"P",
+                P:"J"
+            };
+
+            scores[opposite[q[1]]]++;
+
+        }
+
+    });
+
+    const type =
+        (scores.E >= scores.I ? "E":"I") +
+        (scores.S >= scores.N ? "S":"N") +
+        (scores.T >= scores.F ? "T":"F") +
+        (scores.J >= scores.P ? "J":"P");
+
+    const r = results[type];
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("result").innerHTML = `
+
+        <div class="emoji">${r.emoji}</div>
+
+        <h2>${type} - ${r.title}</h2>
+
+        <p>
+            당신은 <b>${r.title}</b> 타입입니다 ✨
+        </p>
+
+        <div class="traits">
+
+            <div class="box">
+                <h3>💖 장점</h3>
+                <ul>
+                    ${r.good.map(x=>`<li>${x}</li>`).join("")}
+                </ul>
+            </div>
+
+            <div class="box">
+                <h3>⚡ 단점</h3>
+                <ul>
+                    ${r.bad.map(x=>`<li>${x}</li>`).join("")}
+                </ul>
+            </div>
+
+        </div>
+    `;
+
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:"smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
+```
