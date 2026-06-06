@@ -1,0 +1,23 @@
+.result-card{
+
+  width:420px;
+
+  padding:40px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  background:rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+}
+
+.result-card img{
+
+  width:180px;
+
+  border-radius:20px;
+
+  margin-bottom:20px;
+}
