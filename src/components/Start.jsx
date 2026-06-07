@@ -3,6 +3,12 @@ function Start({ onStart }) {
   return (
     <div className="card">
 
+      <img
+        src={new URL('/images/logo.png', import.meta.url).href}
+        alt="MoodMirror Logo"
+        className="app-logo"
+      />
+
       <h1>MoodMirror ✨</h1>
 
       <p>
