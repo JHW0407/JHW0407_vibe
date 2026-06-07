@@ -8,7 +8,7 @@ function ResultCard({ type }) {
     <div className="result-card">
 
       <img
-        src={`/images/result/${type.toLowerCase()}.png`}
+        src={${import.meta.env.BASE_URL}images/result/${type.toLowerCase()}.png}
         alt={type}
       />
 
