@@ -67,3 +67,77 @@ button:hover{
 
   border-radius:999px;
 }
+
+.app-logo,
+.main-logo {
+  width:120px;
+  height:auto;
+  margin:0 auto 20px;
+  display:block;
+  border-radius:20px;
+  box-shadow:0 10px 35px rgba(15,23,42,0.45);
+}
+
+.result-container {
+  width:100%;
+  max-width:520px;
+  padding:30px;
+  border-radius:28px;
+  background:rgba(15,23,42,0.82);
+  margin:0 auto;
+}
+
+.result-image {
+  width:100%;
+  max-width:320px;
+  margin:0 auto 24px;
+  display:block;
+  border-radius:22px;
+  object-fit:cover;
+  box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
+
+.result-type {
+  font-size:2rem;
+  margin:0 0 10px;
+}
+
+.result-title {
+  margin:0 0 16px;
+  font-size:1.4rem;
+}
+
+.result-description {
+  margin-bottom:24px;
+  line-height:1.7;
+  opacity:0.95;
+}
+
+.retry-button {
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  background:#38bdf8;
+  color:#0f172a;
+}
+
+.start-card {
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.start-overlay {
+  background:rgba(15,23,42,0.6);
+  width:100%;
+  padding:48px 36px;
+  text-align:center;
+}
+
+.start-overlay h1{
+  margin-top:0;
+}

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
-plugins: [react()],
-base: '/JHW0407_vibe/'
-})
+export default defineConfig(({ mode }) => ({
+  plugins: [react()],
+  base: mode === 'production' ? '/JHW0407_vibe/' : '/'
+}))
