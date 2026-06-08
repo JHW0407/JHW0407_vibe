@@ -1,8 +1,7 @@
 function Footer() {
-
   return (
-    <footer>
-      Made with React + Vite
+    <footer className="footer">
+      © 2026 Auracast MBTI
     </footer>
   )
 }
