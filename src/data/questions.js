@@ -1,45 +1,27 @@
 const questions = [
-
   {
-    question:'친구들과 있을 때 에너지가 충전된다',
-    type:'E'
+    question: '친구들과 파티에 가면?',
+    a: { text: '사람들과 적극적으로 논다', type: 'E' },
+    b: { text: '조용히 분위기를 즐긴다', type: 'I' },
   },
 
   {
-    question:'혼자만의 시간이 꼭 필요하다',
-    type:'I'
+    question: '새로운 정보를 볼 때?',
+    a: { text: '현실적인 사실을 본다', type: 'S' },
+    b: { text: '가능성과 의미를 본다', type: 'N' },
   },
 
   {
-    question:'상상과 아이디어를 자주 떠올린다',
-    type:'N'
+    question: '결정을 내릴 때?',
+    a: { text: '논리적으로 판단한다', type: 'T' },
+    b: { text: '감정을 고려한다', type: 'F' },
   },
 
   {
-    question:'현실적인 정보를 더 믿는다',
-    type:'S'
+    question: '계획 스타일은?',
+    a: { text: '철저하게 계획한다', type: 'J' },
+    b: { text: '상황 따라 움직인다', type: 'P' },
   },
-
-  {
-    question:'결정할 때 논리를 우선한다',
-    type:'T'
-  },
-
-  {
-    question:'다른 사람 감정을 중요하게 생각한다',
-    type:'F'
-  },
-
-  {
-    question:'계획이 정리되어 있어야 마음이 편하다',
-    type:'J'
-  },
-
-  {
-    question:'즉흥적인 상황이 재미있다',
-    type:'P'
-  }
-
 ]
 
 export default questions
