@@ -1,1 +1,0 @@
-// legacy static site script removed. This file is no longer used by the React app.
