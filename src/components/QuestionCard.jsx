@@ -1,38 +1,17 @@
-import Progress from './Progress'
-
-function QuestionCard({
-  question,
-  current,
-  total,
-  onAnswer
-}) {
-
+function QuestionCard({ question, onAnswer }) {
   return (
     <div className="question-card">
-
-      <Progress
-        current={current}
-        total={total}
-      />
-
       <h2>{question.question}</h2>
 
-      <div className="answers">
-
-        <button onClick={() => onAnswer(question.type, 3)}>
-          매우 그렇다
+      <div className="btn-group">
+        <button onClick={() => onAnswer(question.a.type)}>
+          {question.a.text}
         </button>
 
-        <button onClick={() => onAnswer(question.type, 2)}>
-          그렇다
+        <button onClick={() => onAnswer(question.b.type)}>
+          {question.b.text}
         </button>
-
-        <button onClick={() => onAnswer(question.type, 1)}>
-          아니다
-        </button>
-
       </div>
-
     </div>
   )
 }
