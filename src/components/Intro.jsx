@@ -1,22 +1,26 @@
 function Intro({ onStart }) {
   return (
-    <div className="intro-container">
-      <img
-        src={`${import.meta.env.BASE_URL}images/logo.png`}
-        alt="MoodMirror Logo"
-        className="main-logo"
-      />
+    <div
+      className="intro"
+      style={{
+        backgroundImage: "url('/images/hero-bg.jpg')",
+      }}
+    >
+      <div className="overlay">
+        <img src="/images/logo.png" className="logo" />
 
-      <h1 className="title">AuraCast ?</h1>
+        <div className="title-box">
+          ✨🌌💫
+          <h1>Auracast</h1>
+          💜🪐⭐
+        </div>
 
-      <p className="description">
-        ??? ???? ??? ????<br />
-        ??? ?? MBTI ???
-      </p>
+        <p className="subtitle">
+          당신의 오라와 성격을 분석해보세요
+        </p>
 
-      <button className="start-button" onClick={onStart}>
-        ??? ????
-      </button>
+        <button onClick={onStart}>테스트 시작하기</button>
+      </div>
     </div>
   )
 }
