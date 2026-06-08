@@ -3,7 +3,15 @@
   padding: 40px;
 }
 
-.result-img {
-  width: 300px;
+.result-image {
+  width: 260px;
   border-radius: 20px;
+  margin: 20px 0;
+}
+
+.result-card button {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
 }
