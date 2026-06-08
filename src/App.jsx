@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import Intro from './components/Intro'
-import QuestionCard from './components/QuestionCard'
-import ResultCard from './components/ResultCard'
-import Progress from './components/Progress'
-import Footer from './components/Footer'
+import { useState } from "react";
+import Intro from "./components/Intro";
+import QuestionCard from "./components/QuestionCard";
+import ResultCard from "./components/ResultCard";
+import Progress from "./components/Progress";
 
-import questions from './data/questions'
-import results from './data/results'
+import questions from "./data/questions";
+import results from "./data/results";
 
 function App() {
-  const [started, setStarted] = useState(false)
-  const [current, setCurrent] = useState(0)
+  const [started, setStarted] = useState(false);
+  const [current, setCurrent] = useState(0);
+
   const [scores, setScores] = useState({
     E: 0,
     I: 0,
@@ -20,39 +20,38 @@ function App() {
     F: 0,
     J: 0,
     P: 0,
-  })
+  });
 
-  const [finished, setFinished] = useState(false)
-  const [mbti, setMbti] = useState('')
+  const [finished, setFinished] = useState(false);
 
   const handleAnswer = (type) => {
-    const updated = {
-      ...scores,
-      [type]: scores[type] + 1,
-    }
-
-    setScores(updated)
+    setScores((prev) => ({
+      ...prev,
+      [type]: prev[type] + 1,
+    }));
 
     if (current + 1 < questions.length) {
-      setCurrent(current + 1)
+      setCurrent(current + 1);
     } else {
-      const result =
-        (updated.E > updated.I ? 'E' : 'I') +
-        (updated.S > updated.N ? 'S' : 'N') +
-        (updated.T > updated.F ? 'T' : 'F') +
-        (updated.J > updated.P ? 'J' : 'P')
-
-      setMbti(result)
-      setFinished(true)
+      setFinished(true);
     }
-  }
+  };
+
+  const getMBTI = () => {
+    return (
+      (scores.E >= scores.I ? "E" : "I") +
+      (scores.S >= scores.N ? "S" : "N") +
+      (scores.T >= scores.F ? "T" : "F") +
+      (scores.J >= scores.P ? "J" : "P")
+    );
+  };
 
   if (!started) {
-    return <Intro onStart={() => setStarted(true)} />
+    return <Intro onStart={() => setStarted(true)} />;
   }
 
   if (finished) {
-    return <ResultCard result={results[mbti]} />
+    return <ResultCard result={results[getMBTI()]} />;
   }
 
   return (
@@ -63,10 +62,8 @@ function App() {
         question={questions[current]}
         onAnswer={handleAnswer}
       />
-
-      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
