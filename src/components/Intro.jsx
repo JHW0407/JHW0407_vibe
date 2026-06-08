@@ -4,7 +4,7 @@ function Intro({ onStart }) {
   return (
     <div className="intro">
       <img
-        src="images/logo.png"
+        src="./images/logo.png"
         alt="Auracast"
         className="main-logo"
       />
