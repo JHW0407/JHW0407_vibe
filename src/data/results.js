@@ -1,25 +1,31 @@
 const results = {
-
   INFP: {
-    title:'달빛 몽상가',
-    desc:'감성이 풍부하며 이상적인 세상을 꿈꾸는 타입'
+    mbti: 'INFP',
+    title: '감성적인 몽상가',
+    description: '이상과 감성을 중요하게 여기는 타입',
+    image: '/images/result/infp.png',
   },
 
   ENFP: {
-    title:'자유로운 불꽃',
-    desc:'열정과 에너지로 주변 분위기를 밝게 만드는 타입'
+    mbti: 'ENFP',
+    title: '열정적인 활동가',
+    description: '창의적이고 에너지가 넘치는 타입',
+    image: '/images/result/enfp.png',
   },
 
   INTJ: {
-    title:'고독한 전략가',
-    desc:'차분하게 미래를 설계하는 분석형 타입'
+    mbti: 'INTJ',
+    title: '전략적 설계자',
+    description: '분석적이고 계획적인 타입',
+    image: '/images/result/intj.png',
   },
 
   ESTJ: {
-    title:'카리스마 리더',
-    desc:'현실적이며 조직을 이끄는 능력이 뛰어난 타입'
-  }
-
+    mbti: 'ESTJ',
+    title: '엄격한 관리자',
+    description: '체계적이고 책임감이 강한 타입',
+    image: '/images/result/estj.png',
+  },
 }
 
 export default results
